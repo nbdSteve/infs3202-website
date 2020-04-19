@@ -9,8 +9,16 @@ $this->load->view('admin/header.php');
 	<div class="alert alert-success" role="alert">
 		<?php echo $this->session->flashdata('success') ?>
 	</div>
+	<hr>
 	<?php
 } ?>
+<?php
+if ($this->input->get('keyword')) {
+	?>
+	<b>Search result for <?php echo $this->input->get('keyword'); ?></b>
+	<?php
+}
+?>
 	<table class="table table-bordered">
 		<tr>
 			<th>ID</th>
@@ -35,6 +43,7 @@ $this->load->view('admin/header.php');
 		}
 		?>
 	</table>
+<?php echo $this->pagination->create_links(); ?>
 <?php
 $this->load->view('admin/footer.php');
 ?><?php

@@ -2,7 +2,7 @@
 $this->load->view('admin/header.php');
 ?>
 	<h1>Add New Resource</h1>
-	<form action="<?php echo site_url('admin/resources/save'); ?>" method="post">
+	<form action="<?php echo site_url('admin/resources/save'); ?>" method="post" enctype="multipart/form-data">
 		<div class="col-md-7">
 			<div class="form-group">
 				<div class="row">
@@ -27,6 +27,15 @@ $this->load->view('admin/header.php');
 					<label class="col-md-3">Author</label>
 					<div class="col-md-9">
 						<input type="text" name="author" class="form-control">
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<label class="col-md-3">Image</label>
+					<div class="col-md-9">
+						<input type="file" name="image" class="form-control">
 					</div>
 					<div class="clearfix"></div>
 				</div>

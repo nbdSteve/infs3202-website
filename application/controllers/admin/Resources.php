@@ -11,9 +11,14 @@ class Resources extends CI_Controller
 		$this->load->model('resources_model');
 	}
 
-	function index()
+	function index($offset = 0)
 	{
-		$data['resources'] = $this->resources_model->getAll();
+		$config['base_url'] = site_url('admin/resources/index');
+		$config['total_rows'] = $this->resources_model->countAll();
+		$config['per_page'] = 3;
+		$config['reuse_query_string'] = true;
+		$this->load->library('pagination', $config);
+		$data['resources'] = $this->resources_model->getAll($config['per_page'], $offset);
 		$this->load->view('admin/resources/index', $data);
 	}
 

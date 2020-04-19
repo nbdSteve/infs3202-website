@@ -5,7 +5,7 @@ class Login extends CI_Controller
 	{
 		parent::__construct();
 		if ($this->session->userdata('user')) {
-			redirect('user/dashboard');
+			redirect('user/feed');
 		}
 	}
 
@@ -16,9 +16,10 @@ class Login extends CI_Controller
 	function verify()
 	{
 		$this->load->model('users_model');
-		if ($this->users_model->validate()) {
-			$this->session->set_userdata('user', $this->users_model->getUserId());
-			redirect('user/dashboard');
+		$data = $this->users_model->validate();
+		if ($data) {
+			$this->session->set_userdata('user', $data->username);
+			redirect('user/feed');
 		} else {
 			$this->session->set_flashdata('error', 'The username or password was incorrect!');
 			redirect('login');

@@ -1,5 +1,5 @@
 <?php
-class Dashboard extends CI_Controller
+class Feed extends CI_Controller
 {
 	function __construct()
 	{
@@ -7,15 +7,17 @@ class Dashboard extends CI_Controller
 		if (!$this->session->userdata('user')) {
 			redirect('login');
 		}
+		$this->load->model('resources_model');
 	}
 
 	function index()
 	{
-		$this->load->view('user/dashboard');
+		$data['resources'] = $this->resources_model->getAll();
+		$this->load->view('user/feed', $data);
 	}
 
 	function logout() {
 		$this->session->sess_destroy();
-		redirect('user');
+		redirect('login');
 	}
 }

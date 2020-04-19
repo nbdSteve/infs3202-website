@@ -13,11 +13,6 @@ class Users_model extends CI_Model
 		return $this->db->get_where('users', array('username' => $username))->row();
 	}
 
-	function getUserId() {
-		$data = $this->validate();
-		return $data->id;
-	}
-
 	function create() {
 		$arr['username'] = $this->input->post('username');
 		$arr['password'] = md5($this->input->post('password'));

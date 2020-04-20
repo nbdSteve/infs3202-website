@@ -13,6 +13,7 @@ class Feed extends CI_Controller
 	function index()
 	{
 		$data['resources'] = $this->resources_model->getAll();
+		$this->load->model('users_model');
 		$this->load->view('user/feed', $data);
 	}
 

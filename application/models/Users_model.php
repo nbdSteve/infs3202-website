@@ -20,4 +20,9 @@ class Users_model extends CI_Model
 			return $this->db->insert('users', $arr);
 		}
 	}
+
+	function getUsername($id) {
+		$data = $this->db->get_where('users', array('id' => $id))->row();
+		return $data->username;
+	}
 }

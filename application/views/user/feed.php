@@ -23,7 +23,6 @@ if ($this->input->get('keyword')) {
 <table class="table table-bordered">
 	<tr>
 		<th>Icon</th>
-		<th>ID</th>
 		<th>Name</th>
 		<th>Tag Line</th>
 		<th>Price</th>
@@ -34,13 +33,12 @@ if ($this->input->get('keyword')) {
 	foreach ($resources as $r) {
 		?>
 		<tr>
-			<td><img src="<?php echo site_url('uploads/'.$r->icon); ?>"</td>
-			<td><?php echo $r->id; ?></td>
+			<td><img src="<?php echo site_url('uploads/' . $r->icon); ?>"</td>
 			<td><?php echo $r->title; ?> v<?php echo $r->version; ?></td>
 			<td><?php echo $r->tag_line; ?></td>
 			<td>$<?php echo $r->price; ?> USD</td>
 			<td><?php echo $r->description; ?></td>
-			<td><?php echo $r->author; ?></td>
+			<td><?php echo $this->users_model->getUsername($r->author); ?></td>
 			<!--			<td><a href="-->
 			<?php //echo site_url('admin/resources/edit/' . $r->id) ?><!--" class="btn btn-primary">Edit</a>-->
 			<!--				<a href="--><?php //echo site_url('admin/resources/delete/' . $r->id) ?><!--"-->

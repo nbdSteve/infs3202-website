@@ -14,7 +14,7 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 	<?php
-	$uri = $this->uri->segment(1);
+	$uri = $this->uri->segment(2);
 	?>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
@@ -24,8 +24,8 @@
 					Account
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="#">Settings</a>
-					<a class="dropdown-item" href="<?php echo site_url('user/feed/logout') ?>">Logout</a>
+					<a class="dropdown-item" href="<?php echo site_url('user/account'); ?>">Settings</a>
+					<a class="dropdown-item" href="<?php echo site_url('user/feed/logout'); ?>">Logout</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">

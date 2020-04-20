@@ -31,9 +31,8 @@ class Resources_model extends CI_Model
 
 	function getResourcesByAuthor($id)
 	{
-		$this->db->get_where('resources', array('author' => $id));
 		$this->db->order_by('id DESC');
-		return $this->db->get('resources')->result();
+		return $this->db->get_where('resources', array('author' => $id))->result();
 	}
 
 

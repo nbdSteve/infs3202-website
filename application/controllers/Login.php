@@ -10,7 +10,14 @@ class Login extends CI_Controller
 	}
 
 	function index() {
-		$this->load->view('login');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[1]|max_length[16]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]|max_length[16]');
+		if (!$this->form_validation->run()) {
+			$this->load->view('login');
+		} else {
+			$this->verify();
+		}
 	}
 
 	function verify()

@@ -1,12 +1,14 @@
 <?php
 $this->load->view('header.php');
 ?>
+<?php echo form_open('login'); ?>
 <div class="m-5 p-5 col-md-4 mx-auto text-center ">
 	<div class="m-5 table-bordered">
-		<h1 class="p-2">Login</h1>
 		<br>
+		<h1>Login</h1>
 		<form method="post" action="<?php echo site_url('login/verify') ?>">
 			<div class="form-group m-3">
+				<hr>
 				<?php if ($this->session->flashdata('error')) {
 					?>
 					<div class="alert alert-danger" role="alert">
@@ -24,11 +26,27 @@ $this->load->view('header.php');
 					<?php
 				} ?>
 				<div class="form-group">
-					<input type="text" name="username" placeholder="Username" class="form-control" required>
+					<?php if (form_error('username')) {
+						?>
+						<div class="alert alert-danger" role="alert">
+							<?php echo form_error('username'); ?>
+						</div>
+						<?php
+					} ?>
+					<input type="text" name="username" placeholder="Email or Username" value="<?php echo set_value('username'); ?>" class="form-control">
 				</div>
 				<div class="form-group">
-					<input type="password" name="password" placeholder="Password" class="form-control" required>
+					<?php if (form_error('password')) {
+						?>
+						<hr>
+						<div class="alert alert-danger" role="alert">
+							<?php echo form_error('password'); ?>
+						</div>
+						<?php
+					} ?>
+					<input type="password" name="password" placeholder="Password" value="<?php echo set_value('password'); ?>" class="form-control">
 				</div>
+				<hr>
 				<div class="form-group">
 					<input type="submit" name="submit" value="Login" class="btn btn-primary">
 				</div>

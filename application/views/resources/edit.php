@@ -1,7 +1,7 @@
 <?php
 $this->load->view('user/header.php');
 ?>
-<h1 class="pt-2">Editing Resource: $resource->title</h1>
+<h1 class="pt-2">Editing Resource: <?php echo $resource->title; ?></h1>
 <form action="<?php echo site_url('resources/update/' . $resource->id); ?>" method="post" enctype="multipart/form-data">
 	<div class="col-md-8">
 		<hr>

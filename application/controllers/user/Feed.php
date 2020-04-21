@@ -5,7 +5,7 @@ class Feed extends CI_Controller
 	{
 		parent::__construct();
 		if (!$this->session->userdata('user')) {
-			redirect('login');
+			redirect('resources/latest');
 		}
 		$this->load->model('resources_model');
 	}

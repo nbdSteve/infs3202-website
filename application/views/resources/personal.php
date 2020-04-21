@@ -1,9 +1,16 @@
 <?php
-$this->load->view('user/header.php');
+$this->load->view('header.php');
 ?>
 <h1 class="pt-2"><?php echo $_SESSION['user']; ?>'s resources active on DIGIMΛЯƬ:</h1>
 <hr>
-<!--<h4 class="pb-2">Latest resources:</h4>-->
+<?php if ($this->session->flashdata('success')) {
+	?>
+	<div class="alert alert-success" role="alert">
+		<?php echo $this->session->flashdata('success') ?>
+	</div>
+	<hr>
+	<?php
+} ?>
 <table class="table table-bordered">
 	<tr>
 		<th class="p-3">Icon</th>
@@ -17,7 +24,7 @@ $this->load->view('user/header.php');
 	foreach ($resources as $r) {
 		?>
 		<tr>
-			<td><img src="<?php echo site_url('uploads/' . $r->icon); ?>"</td>
+			<td><img src="<?php echo site_url('uploads/' . $r->icon); ?>" width="128" height="128"></td>
 			<td><?php echo $r->title; ?> v<?php echo $r->version; ?></td>
 			<td><?php echo $r->tag_line; ?></td>
 			<td>$<?php echo $r->price; ?> USD</td>
@@ -32,5 +39,5 @@ $this->load->view('user/header.php');
 	?>
 </table>
 <?php
-$this->load->view('user/footer.php');
+$this->load->view('footer.php');
 ?>

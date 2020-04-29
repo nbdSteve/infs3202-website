@@ -9,6 +9,7 @@ class Resources extends CI_Controller
 //			redirect('login');
 //		}
 		$this->load->model('resources_model');
+		$this->load->model('users_model');
 	}
 
 	function index()
@@ -22,9 +23,9 @@ class Resources extends CI_Controller
 		$this->load->view('resources/upload');
 	}
 
-	function latest() {
+	function latest()
+	{
 		$data['resources'] = $this->resources_model->getAll();
-		$this->load->model('users_model');
 		$this->load->view('resources/latest', $data);
 	}
 
@@ -81,5 +82,47 @@ class Resources extends CI_Controller
 		$this->resources_model->delete($id);
 		$this->session->set_flashdata('success', 'Resource deleted successfully');
 		redirect('resources/personal');
+	}
+
+	function page($id)
+	{
+		$this->load->model('likes_model');
+		$this->load->model('reviews_model');
+		$data['resource'] = $this->resources_model->getById($id);
+		$data['reviews'] = $this->reviews_model->getReviews($id);
+		$this->load->view('resources/page', $data);
+	}
+
+	function like($resource_id, $user_id)
+	{
+		$this->load->model('likes_model');
+		$this->likes_model->addLike($resource_id, $user_id);
+		redirect('resources/page/' . $resource_id);
+	}
+
+	function unlike($resource_id, $user_id)
+	{
+		$this->load->model('likes_model');
+		$this->likes_model->removeLike($resource_id, $user_id);
+		redirect('resources/page/' . $resource_id);
+	}
+
+	function removeReview($resource_id, $user_id) {
+		$this->load->model('reviews_model');
+		$this->reviews_model->removeReview($resource_id, $user_id);
+		redirect('resources/page/' . $resource_id);
+	}
+
+	function review($resource_id, $user_id) {
+		$this->load->model('reviews_model');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('review', 'Review', 'trim|required|min_length[10]|max_length[500]');
+		$this->form_validation->set_rules('score', 'Score', 'trim|required|decimal|greater_than[0]|less_than_equal_to[5]');
+		if (!$this->form_validation->run()) {
+			$this->page($resource_id);
+		} else {
+			$this->reviews_model->review($resource_id, $user_id);
+			redirect('resources/page/' . $resource_id);
+		}
 	}
 }

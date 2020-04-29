@@ -67,6 +67,7 @@ class Resources_model extends CI_Model
 			$this->load->library('upload', $config);
 			if ($this->upload->do_upload('resource')) {
 				$uploaded = $this->upload->data();
+				$arr['file_name'] = $this->input->post('resource');
 				$arr['resource'] = $uploaded['file_name'];
 			}
 		} else {
@@ -134,6 +135,7 @@ class Resources_model extends CI_Model
 			if ($this->upload->do_upload('resource')) {
 				unlink(APPPATH . '../uploads/' . $data->resource);
 				$uploaded = $this->upload->data();
+				$arr['file_name'] = $this->input->post('resource');
 				$arr['resource'] = $uploaded['file_name'];
 			} else {
 				$i++;

@@ -26,7 +26,7 @@ $this->load->view('header.php');
 		?>
 		<tr>
 			<td><img src="<?php echo site_url('uploads/' . $r->icon); ?>" width="128" height="128"></td>
-			<td><?php echo $r->title; ?> v<?php echo $r->version; ?></td>
+			<td><a href="<?php echo site_url('resources/page/' . $r->id); ?>"><?php echo $r->title; ?> v<?php echo $r->version; ?></td>
 			<td><?php echo $r->tag_line; ?></td>
 			<td>$<?php echo $r->price; ?> USD</td>
 			<td><?php echo $r->description; ?></td>

@@ -84,7 +84,7 @@ $this->load->view('header.php');
 			<div class="row">
 				<label class="col-md-2 text-secondary">Source File</label>
 				<div class="col-md-10 text-secondary">
-					<?php echo $resource->resource; ?>
+					<?php echo $resource->file_name; ?>
 				</div>
 				<div class="clearfix"></div>
 			</div>
